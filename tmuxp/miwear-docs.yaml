@@ -1,0 +1,11 @@
+session_name: miwear-docs
+start_directory: ~/mi/code/miwear-docs
+windows:
+- window_name: vim
+  layout: 8969,192x50,0,0{41x50,0,0[41x35,0,0,0,41x14,0,36,3],150x50,42,0,2}
+  # shell_command_before:
+  #   - cd ~/mi/code/miwear-docs                    # run as a first command in all panes
+  panes:
+    - git status
+    - shell_command: tmux clock-mode
+    - shell_command: vi           
