@@ -1,53 +1,17 @@
+if vim.g.vscode ~= nil then
+  return
+end
+
 -- Telescope setting
 local telescope = require("telescope")
 local actions = require("telescope.actions")
 local themes = require("telescope.themes")
 local Util = require "util"
 local nmap = Util.nmap
+local map = Util.map
 -- Global remapping
 ------------------------------
-telescope.setup{
-  defaults = {
-    mappings = {
-      i = {
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-      },
-      n = {
-        ["<C-j>"] = actions.move_selection_next,
-        ["<C-k>"] = actions.move_selection_previous,
-      },
-    },
-    borderchars = {
-      { "─", "│", "─", "│", "╭", "╮", "╯", "╰"},
-      prompt = {"─", "│", "─", "│", "├", "┤", "┴", "╰"},
-      results = {"─", "│", " ", "│", "╭", "┬", "│", "│"},
-      preview = { "─", "│", "─", " ", "─", "╮", "╯", "─"},
-    },
-    layout_config = {
-      width = 0.8,
-    },
-    prompt_title = false,
-    preview_title = false,
-    results_title = false,
-  },
-  extensions = {
-    lsp_handlers = {
-			code_action = {
-				telescope = require('telescope.themes').get_dropdown({}),
-			},
-		},
-    media_files = {
-      -- filetypes whitelist
-      -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
-      filetypes = {"png", "webp", "jpg", "jpeg"},
-      find_cmd = "rg" -- find command (defaults to `fd`)
-    },
-  },
-}
-telescope.load_extension('lsp_handlers')
-telescope.load_extension('media_files')
-telescope.load_extension('tmux')
+
 function themes.drop(opts)
   opts = opts or {}
 
@@ -99,9 +63,9 @@ function themes.drawer(opts)
     preview_title = "",
     prompt_title = "",
     layout_strategy = "bottom_pane",
-    prompt_position = "bottom",
     layout_config = {
       height = 25,
+      prompt_position = "bottom",
     },
     borderchars = {
       { '─', '│', '─', '│', '┌', '┐', '┘', '└'},
@@ -129,6 +93,66 @@ function themes.no_preview()
   })
 end
 
+
+telescope.setup{
+  defaults = {
+    mappings = {
+      i = {
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+      },
+      n = {
+        ["<C-j>"] = actions.move_selection_next,
+        ["<C-k>"] = actions.move_selection_previous,
+      },
+    },
+    selection_caret = "☞ ",
+    borderchars = {
+      { "─", "│", "─", "│", "╭", "╮", "╯", "╰"},
+      prompt = {"─", "│", "─", "│", "├", "┤", "┴", "╰"},
+      results = {"─", "│", " ", "│", "╭", "┬", "│", "│"},
+      preview = { "─", "│", "─", " ", "─", "╮", "╯", "─"},
+    },
+    layout_config = {
+      width = 0.8,
+    },
+    prompt_title = false,
+    preview_title = false,
+    results_title = false,
+  },
+  pickers = {
+    commands = {
+      theme = "ivy"
+    }
+  },
+  extensions = {
+    media_files = {
+      -- filetypes whitelist
+      -- defaults to {"png", "jpg", "mp4", "webm", "pdf"}
+      filetypes = {"png", "webp", "jpg", "jpeg"},
+      find_cmd = "rg" -- find command (defaults to `fd`)
+    },
+    project = {
+      base_dirs = {
+        {path = "~/mi/code/", max_depth = 1},
+        {path = "~/repo/", max_depth = 1}
+      }
+    },
+    lsp_handlers = {
+			code_action = {
+				telescope = require('telescope.themes').get_cursor({
+          prompt_title = false
+        }),
+			},
+		},
+  },
+}
+
+telescope.load_extension('lsp_handlers')
+telescope.load_extension('media_files')
+telescope.load_extension('tmux')
+telescope.load_extension('project')
+
 -- keymaps
 nmap("<leader>t", ":Telescope builtin theme=no_preview<CR>")
 nmap("<leader>f", ":Telescope find_files theme=float<CR>")
@@ -137,3 +161,6 @@ nmap("ff", ":Telescope live_grep theme=float<CR>")
 nmap("<leader>b", ":Telescope buffers theme=no_preview<CR>")
 nmap("<C-b>", ":Telescope buffers theme=no_preview<CR>")
 nmap("<leader>r", ":Telescope oldfiles theme=no_preview<CR>")
+map("gp", ":Telescope project theme=no_preview<CR>")
+map("<C-p>", ":Telescope commands theme=drawer<CR>")
+nmap("fp", ":Telescope project theme=no_preview<CR>")

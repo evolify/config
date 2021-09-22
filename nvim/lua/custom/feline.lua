@@ -15,8 +15,8 @@ end
 
 local colors = {
   -- bg = '#111111',
-  bg = '#000000',
-  -- bg = "#263137",
+  -- bg = '#000000',
+  bg = "#26313720",
   fg = '#f8f8f2',
   section_bg = '#3D434F',
   -- section_bg = '#484E5A',
@@ -51,7 +51,8 @@ local icons = {
   git = "",
   -- time = "",
   time = "􀐫",
-  left = "▊",
+  -- left = "▌",
+  left = "▍",
   right = "▐",
   dot = "●",
   circle = "⭘",
@@ -175,9 +176,9 @@ local time = {
 }
 
 require'feline'.setup {
-  default_fg = '#8FBCBB',
-  default_bg = colors.bg,
   colors = {
+    fg= '#8FBCBB',
+    bg= colors.bg,
     black = '#000000',
     skyblue = '#81A1C1',
     cyan = '#88C0D0',
@@ -207,8 +208,8 @@ require'feline'.setup {
     NONE = 'orange',
   },
   components = {
-    left = {
-      active = {
+    active = {
+      {
         left,
         vi_mode_component,
         divider,
@@ -220,18 +221,7 @@ require'feline'.setup {
         diagnostic("Hint"),
         divider,
       },
-      inactive = {
-        left,
-        divider,
-        file,
-      },
-    },
-    mid = { 
-      active = {}, 
-      inactive = {} 
-    },
-    right = {
-      active = {
+      {
         git,
         gitdiff("added"),
         divider,
@@ -239,26 +229,27 @@ require'feline'.setup {
         divider,
         gitdiff("removed"),
         time,
-        -- right,
-      },
-      inactive = {
-        -- right,
       }
-    }
+    },
+    inactive = {
+      {
+        left,
+        divider,
+        file,
+      }
+    },
   },
-  properties =  {
-    force_inactive = {
-      filetypes = {
-        'NvimTree',
-        'packer',
-        'dap-repl',
-        'dapui_scopes', 'dapui_stacks', 'dapui_watches', 'dapui_repl',
-        'LspTrouble',
-        'Outline',
-      },
-      buftypes = {'terminal'},
-      bufnames = {},
-    }
-  },
+  force_inactive = {
+    filetypes = {
+      'NvimTree',
+      'packer',
+      'dap-repl',
+      'dapui_scopes', 'dapui_stacks', 'dapui_watches', 'dapui_repl',
+      'LspTrouble',
+      'Outline',
+    },
+    buftypes = {'terminal'},
+    bufnames = {},
+  }
 }
 

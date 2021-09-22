@@ -1,0 +1,33 @@
+# This is Git's per-user configuration file.
+[user]
+# Please adapt and uncomment the following lines:
+#	name = evolify 
+#	email = wolf@evolify.cn
+[user]
+	name = evolify
+	email = wolf@evolify.cn
+[core]
+	autocrlf = false
+	safecrlf = true
+	editor = "nvim"
+	excludesfile = /Users/evolify/.gitignore_global
+[difftool "sourcetree"]
+	cmd = opendiff \"$LOCAL\" \"$REMOTE\"
+	path = 
+[mergetool "sourcetree"]
+	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
+	trustExitCode = true
+[commit]
+	template = /Users/evolify/.stCommitMsg
+
+[includeIf "gitdir:~/mi/code/"]
+	path = ~/mi/code/.gitconfig
+[include]
+	path = /Users/evolify/.gitalias.txt
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+[pull]
+	rebase = true

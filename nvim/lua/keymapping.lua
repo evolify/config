@@ -21,14 +21,14 @@ imap("<s-tab>", '<esc>:call emmet#expandAbbr(0,"")<cr>h:call emmet#splitJoinTab(
 -- auto complete nav
 -- imap("<tab>", "v:lua.vsnip_next()", {expr = true})
 -- smap("<tab>", "v:lua.vsnip_next()", {expr = true})
-imap("<S-tab>", "v:lua.vsnip_prev()", {expr = true})
+--[[ imap("<S-tab>", "v:lua.vsnip_prev()", {expr = true})
 smap("<S-tab>", "v:lua.vsnip_prev()", {expr = true})
 imap("<C-j>", "v:lua.vsnip_next()", {expr = true})
 smap("<C-j>", "v:lua.vsnip_next()", {expr = true})
 imap("<C-k>", "v:lua.vsnip_prev()", {expr = true})
 smap("<C-k>", "v:lua.vsnip_prev()", {expr = true})
 imap("<CR>", "compe#confirm('<CR>')", {expr = true})
-
+ ]]
 
 
 
@@ -84,11 +84,15 @@ nmap("<tab>", ":BufferLineCycleNext<CR>")
 nmap("<s-tab>", ":BufferLineCyclePrev<CR>")
 nmap("]]", ":BufferLineCycleNext<CR>")
 nmap("[[", ":BufferLineCyclePrev<CR>")
-nmap("<C-p>", ":BufferLinePick<CR>")
+nmap("gb", ":BufferLinePick<CR>")
 
 -- GitMessenger
 nmap("gm", "<Plug>(git-messenger)")
 nmap("gs", ":lua require'gitsigns'.blame_line(true)<CR>")
+nmap("gk", ":FocusToggle<CR>")
+nmap("<C-M>", ":FocusToggle<CR>")
+
+nmap("<C-W>m", ":WinShift<CR>")
 
 -- easymotion
 -- g.EasyMotion_do_mapping = 0 -- Disable default mappings
@@ -115,7 +119,7 @@ nmap("<esc>", ":noh<cr>")
 -- fold
 -- nmap("fo", ":foldopen<CR>")
 -- nmap("fc", ":foldclose<CR>")
-nmap("zz", "za")
+-- nmap("zz", "za")
 
 -- eft
 nmap(";", "<Plug>(eft-repeat)")
@@ -135,3 +139,4 @@ omap("T", "<Plug>(eft-T)")
 
 -- BlockBoard
 map("<C-c>", ":BlockBoardToggle<CR>")
+

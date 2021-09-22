@@ -1,6 +1,12 @@
 local vim = vim
 local api = vim.api
 
+local vscode = vim.g.vscode ~= nil
+
+local function not_vscode()
+  return not vscode
+end
+
 -- this initializes jhe packer plugin manager
 api.nvim_command [[packadd packer.nvim]]
 
@@ -11,11 +17,14 @@ require("packer").startup(
   function()
     use {"wbthomason/packer.nvim", opt = true}
 
+    use "svermeulen/vimpeccable"
+
     use {
       "famiu/nvim-reload",
+      opt = true,
       config = function()
         require('nvim-reload').post_reload_hook = function()
-          -- require('feline').reset_highlights()
+          require('feline').reset_highlights()
         end
       end
     }
@@ -31,7 +40,8 @@ require("packer").startup(
     use "~/repo/starry"
     use 'folke/tokyonight.nvim'
     -- use {"npxbr/gruvbox.nvim", requires = {"rktjmp/lush.nvim"}}
-    use "ayu-theme/ayu-vim"
+    use "~/repo/ayu-vim"
+    use "google/vim-colorscheme-primary"
 
     use {
       "folke/which-key.nvim",
@@ -51,7 +61,9 @@ require("packer").startup(
     use {
       "karb94/neoscroll.nvim",
       config = function()
-        require('neoscroll').setup()
+        require('neoscroll').setup({
+          hide_cursor = false
+        })
       end
     }
     use "itchyny/vim-cursorword"
@@ -67,7 +79,7 @@ require("packer").startup(
     use "pbogut/fzf-mru.vim"
     use "nvim-lua/plenary.nvim"
 
-    -- use "tpope/vim-fugitive"
+    -- git
     use "rhysd/git-messenger.vim"
     use {
       "lewis6991/gitsigns.nvim",
@@ -79,17 +91,33 @@ require("packer").startup(
       end
     }
     use "kdheepak/lazygit.nvim"
+    opt = true,
+    use {
+      "sindrets/diffview.nvim",
+      config = function()
+        require "custom/diffview"
+      end
+    }
 
     use {
       'nvim-telescope/telescope.nvim',
       requires = {'nvim-lua/popup.nvim'},
-      config = function()
+      cond = not_vscode,
+      opt = true,
+      config = function() 
         require "custom/telescope"
       end
     }
     use "nvim-telescope/telescope-media-files.nvim"
     use "christoomey/vim-tmux-navigator"
+    use {
+      "sindrets/winshift.nvim",
+      config = function()
+        -- require("winshift").setup({})
+      end
+    }
     use "camgraff/telescope-tmux.nvim"
+    use "nvim-telescope/telescope-project.nvim"
     use "glepnir/dashboard-nvim"
     use {
       "akinsho/nvim-toggleterm.lua",
@@ -97,8 +125,12 @@ require("packer").startup(
         require "custom/toggleterm"
       end
     }
-    use "norcalli/nvim-colorizer.lua"
-
+    use {
+      "norcalli/nvim-colorizer.lua",
+      config = function()
+        require'colorizer'.setup()
+      end
+    }
     use "kyazdani42/nvim-web-devicons"
     use {
       "famiu/feline.nvim",
@@ -107,8 +139,33 @@ require("packer").startup(
       end
     }
     -- use "romgrk/barbar.nvim"
-    use "neovim/nvim-lspconfig"
-    use "hrsh7th/nvim-compe"
+    use {
+      "neovim/nvim-lspconfig",
+      config = function()
+        require "custom/lsp"
+      end
+    }
+    use {
+      "onsails/lspkind-nvim",
+      --[[ config = function()
+        require "custom/lspkind"
+      end ]]
+    }
+    use {
+      "hrsh7th/nvim-cmp",
+      requires = {
+        "hrsh7th/cmp-nvim-lsp",
+        "hrsh7th/cmp-buffer",
+        "hrsh7th/cmp-path",
+        "hrsh7th/cmp-vsnip",
+        "hrsh7th/cmp-emoji",
+      },
+      config = function()
+        require "custom/cmp"
+      end
+    }
+    use "hrsh7th/vim-vsnip"
+    -- use "hrsh7th/vim-vsnip-integ"
     -- use "glepnir/lspsaga.nvim"
     -- disable tabnine
     -- use "tzachar/compe-tabnine"
@@ -121,36 +178,76 @@ require("packer").startup(
     }
     use "ray-x/lsp_signature.nvim"
     use "gbrlsnchs/telescope-lsp-handlers.nvim"
-    use "hrsh7th/vim-vsnip"
-    use "hrsh7th/vim-vsnip-integ"
-    use {'nvim-treesitter/nvim-treesitter', run = ':TSUpdate' }
+    use {
+      'nvim-treesitter/nvim-treesitter',
+      run = ':TSUpdate',
+      config = function()
+        require "custom/treesitter"
+      end
+    }
     use "nvim-treesitter/nvim-treesitter-textobjects"
     use "nvim-treesitter/playground"
     use "p00f/nvim-ts-rainbow"
     use 'JoosepAlviste/nvim-ts-context-commentstring'
     use "nvim-treesitter/nvim-tree-docs"
     use "windwp/nvim-ts-autotag"
-    use "windwp/nvim-autopairs"
+    use {
+      "windwp/nvim-autopairs",
+      config = function() 
+        require('nvim-autopairs').setup()
+      end
+    }
     use "theHamsta/nvim-treesitter-pairs"
     use {
-      "folke/todo-comments.nvim",
-      --[[ config = function()
-        require("todo-comments").setup { }
-      end ]]
-    }
-    use {
-      "kristijanhusak/orgmode.nvim",
+      "lukas-reineke/indent-blankline.nvim",
       config = function()
-        require('orgmode').setup({
-          org_agenda_files = {'~/org/*'},
-          org_default_notes_file = '~/org/refile.org',
-        })
+        require("indent_blankline").setup {
+          filetype_exclude = {"dashboard"},
+          -- space_char_blankline = " ",
+          use_treesitter = true,
+          show_current_context = true,
+        }
       end
     }
     use {
-      "Pocco81/TrueZen.nvim",
+      "folke/todo-comments.nvim",
       config = function()
-        require "custom/true_zen"
+        require"custom/todo-comments"
+      end
+    }
+    use "kshenoy/vim-signature"
+    use { 
+      "rcarriga/nvim-dap-ui",
+      opt = true,
+      requires = {"mfussenegger/nvim-dap"},
+      config = function()
+        require "custom/dap"
+      end
+    }
+    use {
+      "hkupty/iron.nvim"
+    }
+    use "metakirby5/codi.vim"
+    use {
+      "kristijanhusak/orgmode.nvim",
+      requires = {
+        "akinsho/org-bullets.nvim"
+      },
+      config = function()
+        require "custom/orgmode"
+      end
+    }
+    use {
+      "folke/zen-mode.nvim",
+      config = function()
+        require "custom/zen"
+      end
+    }
+    use "folke/twilight.nvim"
+    use {
+      "beauwilliams/focus.nvim",
+      config = function()
+        require("focus").setup({})
       end
     }
     use "~/repo/blockboard.nvim"

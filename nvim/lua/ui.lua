@@ -6,15 +6,16 @@ local cmd = vim.cmd
 local Util = require("util")
 local hl = Util.highlight
 
-cmd("colorscheme starry")
-cmd("hi Normal guibg=NONE ctermbg=NONE")
-cmd("hi VertSplit guibg=NON")
+cmd("colorscheme ayu")
+--[[ cmd("hi Normal guibg=NONE ctermbg=NONE")
+cmd("hi VertSplit guibg=NON") ]]
 
-o.guifont = "FiraCode:16"
+-- o.guifont = "Fira Code Regular:h18, MesloLGS NF Regular:h17"
+o.guifont = "JetBrains Mono Regular Nerd Font Complete Mono:h18"
 
 o.termguicolors = true
 
-o.background = "dark"
+-- o.background = "dark"
 
 o.fillchars = "vert:│"
 o.fcs = "eob: "

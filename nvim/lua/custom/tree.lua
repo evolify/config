@@ -2,6 +2,7 @@ local Util = require "util"
 local map = Util.map
 local g = vim.g
 local exec = vim.api.nvim_exec
+local vimp = require("vimp")
 
 -- nvim_tree
 local tree_cb = require'nvim-tree.config'.nvim_tree_callback
@@ -42,6 +43,8 @@ g.nvim_tree_bindings = {
 }
 
 g.nvim_tree_root_folder_modifier = ":t"
+g.nvim_tree_auto_open = 1
+g.lua_tree_follow = 1
 g.nvim_tree_width_allow_resize = 1
 g.nvim_tree_show_icons = {
   git = 1,
@@ -55,12 +58,24 @@ function NvimTreeConfig.find_toggle()
   local view = require'nvim-tree.view'
   if view.win_open() then
     view.close()
-  else
+  elseif vim.fn.bufname() then
     vim.cmd("NvimTreeFindFile")
+  else
+    vim.cmd("NvimTreeOpen")
   end
 end
 
 map("<C-n>", ":lua NvimTreeConfig.find_toggle()<CR>")
+--[[ vimp.bind('', "<C-n>", function()
+  local view = require'nvim-tree.view'
+  if view.win_open() then
+    view.close()
+  elseif vim.fn.bufname() then
+    vim.cmd("NvimTreeFindFile")
+  else
+    vim.cmd("NvimTreeOpen")
+  end
+end) ]]
 -- g.nvim_tree_follow = 1
 
 -- remove nvim_tree cursor highlight

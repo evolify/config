@@ -7,6 +7,11 @@ local cmd = vim.cmd
 cmd("syntax on")
 cmd("filetype plugin indent on")
 
+-- enable quickapp syntax highlight
+cmd([[
+  au BufRead,BufNewFile *.ux set ft=vue
+]])
+
 -- auto toggle tmux statusline
 -- cmd("autocmd VimEnter,VimLeave * silent !tmux set status")
 
@@ -23,5 +28,9 @@ o.backspace = '2'
 o.wildmode = "list:longest"
 o.hidden = true
 o.clipboard = "unnamedplus"
+
+cmd([[
+  au TextYankPost * silent! lua vim.highlight.on_yank({timeout = 300})
+]])
 
 require "custom.neovide"

@@ -1,55 +1,71 @@
-local bg = "#000000"
--- local selected_fg = "#fe8019"
-local selected_fg = "#ffffff"
+--[[ local bg = "#2D3640"
+local selected_fg = "#fe8019"
+local selected_bg = "bg"
+local visible_fg = "#cccccc"
 local fg = "#aaaaaa"
+ ]]
+
+local selected_fg = "#000000"
+local selected_bg = "#FFBC14"
+local visible_fg = "#fe8019"
+local bg = "#0F1419"
+local fg = "#ffffff"
+
+local active = {
+  guibg = selected_bg,
+  guifg = selected_fg,
+  gui = "bold,italic"
+}
+local in_active = {
+  guibg = bg,
+  guifg = fg
+}
 require('bufferline').setup {
   options = {
     show_buffer_close_icons = false,
     show_close_icon = false,
-    indicator_icon = '▌',
-    indicator_icon = '',
-    separator_style = {"▏", ""},
+    indicator_icon = '▎',
+-- 
     max_name_length = 18,
     max_prefix_length = 15, -- prefix used when a buffer is de-duplicated
-    offsets = {{filetype = "NvimTree", text = "▌ NVIM TREE", text_align = "left"}},
-    diagnostics = "nvim_lsp",
+    offsets = { {filetype = "NvimTree", text = "▍ NVIM TREE", text_align = "left"} },
+    diagnostics = false,
     buffer_close_icon = "",
     modified_icon = "",
     close_icon = "",
     left_trunc_marker = "",
     right_trunc_marker = "",
-    tab_size = 20,
+    tab_size = 12,
     show_tab_indicators = true,
     enforce_regular_tabs = false,
     view = "multiwindow",
     separator_style = "thin",
-    mappings = "true",
     --[[ diagnostics_indicator = function(count, level, diagnostics_dict)
       return "("..count..")"
     end ]]
   },
   highlights = {
-    fill = {
-      guibg = bg,
+    indicator_selected = active,
+    fill = in_active,
+    background = in_active,
+    buffer_selected = active,
+    diagnostic = in_active,
+    duplicate = in_active,
+    duplicate_selected = active,
+    pick = {
+      guibg = bg
     },
-    background = {
-      guifg = fg,
-      guibg = bg,
+    pick_selected = {
+      guibg = selected_bg
     },
-    buffer_selected = {
-      guifg = selected_fg,
+    modified_selected = active,
+    buffer_visible = {
       guibg = bg,
-      gui = "bold,italic"
-    },
-    diagnostic =  {
-      guibg = bg,
+      guifg = visible_fg
     },
     separator = {
-      guibg = bg,
-      guifg = "#000000",
-    },
-    indicator_selected = {
-      guifg = selected_fg,
+      guifg = bg,
+      guibg = bg
     },
   }
 }
