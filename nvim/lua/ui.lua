@@ -17,8 +17,7 @@ o.termguicolors = true
 
 -- o.background = "dark"
 
-o.fillchars = "vert:│"
-o.fcs = "eob: "
+o.fillchars = "vert:▏,eob: "
 
 o.laststatus = 2
 

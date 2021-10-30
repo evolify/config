@@ -1,3 +1,6 @@
+local cmd = vim.cmd
+local wo = vim.wo
+
 require('orgmode').setup({
   org_agenda_files = {'~/org/*'},
   org_default_notes_file = '~/org/refile.org',
@@ -10,6 +13,10 @@ require('orgmode').setup({
 })
 
 require("org-bullets").setup({
-  symbols = { "◉", "○", "✸", "✿" }
+  symbols = { "◉", "○", "◎", "☉", "❄", "✸", "✿" }
 })
+
+
+wo.concealcursor = "nc"
+wo.conceallevel = 2
 

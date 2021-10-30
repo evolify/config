@@ -1,4 +1,3 @@
-local vim = vim
 local api = vim.api
 
 local vscode = vim.g.vscode ~= nil
@@ -52,7 +51,18 @@ require("packer").startup(
     use "mattn/emmet-vim"
     use "tpope/vim-surround"
     use "maxmellon/vim-jsx-pretty"
-    use "b3nj5m1n/kommentary"
+    -- use "b3nj5m1n/kommentary"
+    use {
+      "numToStr/Comment.nvim",
+      config = function()
+        require("Comment").setup({
+          pre_hook = function()
+            -- require('ts_context_commentstring.internal').update_commentstring()
+            return vim.bo.commentstring
+          end
+        })
+      end
+    }
     -- use "terrortylor/nvim-comment"
     use "easymotion/vim-easymotion"
     use "phaazon/hop.nvim"
@@ -80,18 +90,14 @@ require("packer").startup(
     use "nvim-lua/plenary.nvim"
 
     -- git
-    use "rhysd/git-messenger.vim"
     use {
       "lewis6991/gitsigns.nvim",
       config = function()
-        require('gitsigns').setup({
-          current_line_blame = true,
-          signcolumn = false,
-        })
+        require "custom/git"
       end
     }
+    use "rhysd/git-messenger.vim"
     use "kdheepak/lazygit.nvim"
-    opt = true,
     use {
       "sindrets/diffview.nvim",
       config = function()
@@ -99,6 +105,7 @@ require("packer").startup(
       end
     }
 
+    -- telescope
     use {
       'nvim-telescope/telescope.nvim',
       requires = {'nvim-lua/popup.nvim'},
@@ -187,9 +194,12 @@ require("packer").startup(
     }
     use "nvim-treesitter/nvim-treesitter-textobjects"
     use "nvim-treesitter/playground"
+    use "RRethy/nvim-treesitter-textsubjects"
     use "p00f/nvim-ts-rainbow"
     use 'JoosepAlviste/nvim-ts-context-commentstring'
-    use "nvim-treesitter/nvim-tree-docs"
+    -- TODO: use back when #12 merged
+    -- use "nvim-treesitter/nvim-tree-docs"
+    use "Olical/nvim-tree-docs"
     use "windwp/nvim-ts-autotag"
     use {
       "windwp/nvim-autopairs",
@@ -215,11 +225,19 @@ require("packer").startup(
         require"custom/todo-comments"
       end
     }
-    use "kshenoy/vim-signature"
+    -- use "kshenoy/vim-signature"
+    use {
+      "chentau/marks.nvim",
+      config = function()
+        require"custom/marks"
+      end
+    }
     use { 
-      "rcarriga/nvim-dap-ui",
-      opt = true,
-      requires = {"mfussenegger/nvim-dap"},
+      "mfussenegger/nvim-dap",
+      requires = {
+        "rcarriga/nvim-dap-ui",
+        "theHamsta/nvim-dap-virtual-text"
+      },
       config = function()
         require "custom/dap"
       end
@@ -247,7 +265,9 @@ require("packer").startup(
     use {
       "beauwilliams/focus.nvim",
       config = function()
-        require("focus").setup({})
+        require("focus").setup({
+          excluded_filetypes = {"NvimTree"}
+        })
       end
     }
     use "~/repo/blockboard.nvim"

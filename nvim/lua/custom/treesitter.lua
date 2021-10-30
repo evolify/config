@@ -8,6 +8,7 @@ require'nvim-treesitter.configs'.setup {
   textobjects = {
     select = {
       enable = true,
+      lookahead = true,
       keymaps = {
         -- You can use the capture groups defined in textobjects.scm
         ["af"] = "@function.outer",
@@ -32,11 +33,31 @@ require'nvim-treesitter.configs'.setup {
       node_decremental = "grm",
     },
   },
-  doc = {
+  textsubjects = {
+    enable = true,
+    keymaps = {
+      ['.'] = 'textsubjects-smart',
+      [';'] = 'textsubjects-container-outer',
+    }
+  },
+  tree_docs = {
     enable = true,
     keymap = {
-      doc_node_at_cursor = 'gcd'
-    }
+      doc_node_at_cursor = 'gcd',
+      doc_all_in_range = "gcd"
+    },
+    spec_config = {
+      jsdoc = {
+        slots = {
+          class = {author = true}
+        },
+        processors = {
+          author = function()
+            return " * @author evolify"
+          end
+        }
+      }
+    },
   },
   rainbow = {
     enable = true
@@ -59,6 +80,7 @@ require'nvim-treesitter.configs'.setup {
     }
   },
   context_commentstring = {
-    enable = true
-  }
+    enable = true,
+    enable_autocmd = false
+  },
 }

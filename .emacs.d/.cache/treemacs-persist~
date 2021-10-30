@@ -1,0 +1,5 @@
+* No Perspective
+** config
+ - path :: ~/repo/config
+** webapp
+ - path :: ~/mi/code/webapp

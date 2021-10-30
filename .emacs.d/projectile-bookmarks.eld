@@ -1,0 +1,1 @@
+("~/repo/config/" "~/mi/code/webapp/" "~/code/web/activity/")

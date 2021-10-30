@@ -12,6 +12,7 @@ cmd([[
   au BufRead,BufNewFile *.ux set ft=vue
 ]])
 
+
 -- auto toggle tmux statusline
 -- cmd("autocmd VimEnter,VimLeave * silent !tmux set status")
 

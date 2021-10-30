@@ -1,4 +1,4 @@
-vim.g.vsnip_snippet_dirs = {"~/.config/snippets/snippets"}
+vim.g.vsnip_snippet_dirs = {"~/repo/snippets/snippets"}
 
 local cmp = require'cmp'
 local lspkind = require('lspkind')
@@ -9,9 +9,9 @@ cmp.setup({
       vim.fn["vsnip#anonymous"](args.body)
     end,
   },
-  completion = {
-    completeopt = 'menu,menuone,noinsert',
-  },
+  -- completion = {
+  --   completeopt = 'menu,menuone,noinsert',
+  -- },
   formatting = {
     format = function(entry, vim_item)
       vim_item.kind = lspkind.presets.default[vim_item.kind] .. " " .. vim_item.kind

@@ -128,7 +128,7 @@ local vi_mode_component = {
       [''] = 'SELECT',
       t = 'TERMINAL',
     }
-    return " "..mode_alias[vim.fn.mode()]
+    return " "..(mode_alias[vim.fn.mode()] or "")
   end,
   hl = function()
     return {
@@ -173,6 +173,14 @@ local time = {
     return " 􀐫 "..os.date('%H:%M').." "
   end,
   hl = { fg = colors.fg }
+}
+
+local line = {
+  provider = ' ',
+  hl = {
+    fg = "#5C6773",
+    style = "underline"
+  }
 }
 
 require'feline'.setup {
@@ -233,9 +241,7 @@ require'feline'.setup {
     },
     inactive = {
       {
-        left,
-        divider,
-        file,
+        line
       }
     },
   },

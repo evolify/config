@@ -35,37 +35,6 @@ imap("<CR>", "compe#confirm('<CR>')", {expr = true})
 local t = function(str)
   return vim.api.nvim_replace_termcodes(str, true, true, true)
 end
--- comment
-_G.ctx_comment= function(type)
-  require('ts_context_commentstring.internal').update_commentstring()
-  if type == 1 then
-    --vim.cmd("<Plug>kommentary_line_default")
-    vim.cmd('execute "normal \\<Plug>kommentary_line_default"')
-  elseif type == 2 then
-    -- return t "<Plug>kommentary_motion_default"
-    -- return t "<leader>gc"
-    vim.cmd('execute "normal \\<Plug>kommentary_motion_default"')
-  elseif type == 3 then
-    --return t "<Plug>kommentary_visual_default"
-  end
-end
-
--- nmap("gc", ":lua require('ts_context_commentstring.internal').update_commentstring()<CR>")
---nmap("gc", "v:lua.ctx_comment()")
--- nmap("gcc", ":lua ctx_comment()<CR>", {})
-
-
-nmap("gcc", "v:lua ctx_comment(1)<CR>")
---nmap("gcc", "v:lua.context_commentstring.update_commentstring_and_run('execute \"normal \\<Plug>kommentary_line_default\"')<CR>")
--- nmap("gc", "v:lua ctx_comment(2)<CR>")
--- vmap("gc", "v:lua ctx_comment(3)<CR>")
-nmap("gc", "<Plug>kommentary_motion_default")
-vmap("gc", "<Plug>kommentary_visual_default")
-
--- nmap("gc", [[v:lua.context_commentstring.update_commentstring_and_run('Commentary')]], {expr = true})
-
--- nmap("gcc", [[v:lua.context_commentstring.update_commentstring_and_run('CommentaryLine')]], {expr = true})
-
 
 -- fzf mru
 -- nmap("<leader>f", ":FZF<CR>")
@@ -136,6 +105,10 @@ omap("t", "<Plug>(eft-t)")
 nmap("T", "<Plug>(eft-T)")
 xmap("T", "<Plug>(eft-T)")
 omap("T", "<Plug>(eft-T)")
+
+-- accelerated_jk
+nmap("j", "<Plug>(accelerated_jk_gj)")
+nmap("k", "<Plug>(accelerated_jk_gk)")
 
 -- BlockBoard
 map("<C-c>", ":BlockBoardToggle<CR>")

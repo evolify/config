@@ -1,0 +1,21 @@
+* Perspective main
+** b
+ - path :: ~/code/web/b
+** webapp
+ - path :: ~/mi/code/webapp
+** activity
+ - path :: ~/code/web/activity
+* Perspective libai-mobile
+** libai-mobile
+ - path :: ~/mi/code/libai-mobile
+* Perspective b
+** b
+ - path :: ~/code/web/b
+* Perspective activity
+** activity
+ - path :: ~/code/web/activity
+** webapp
+ - path :: ~/mi/code/webapp
+* Perspective webapp
+** webapp
+ - path :: ~/mi/code/webapp

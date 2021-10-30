@@ -60,8 +60,9 @@ function themes.drawer(opts)
   return vim.tbl_deep_extend("force", {
     theme = "drawer",
     sorting_strategy = "ascending",
-    preview_title = "",
-    prompt_title = "",
+    prompt_title = false,
+    preview_title = false,
+    results_title = false,
     layout_strategy = "bottom_pane",
     layout_config = {
       height = 25,
