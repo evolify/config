@@ -341,9 +341,11 @@ _G.packer_plugins = {
   },
   ["telescope.nvim"] = {
     after = { "popup.nvim" },
+    cond = { "\27LJ\2\n\21\0\0\1\1\0\0\3-\0\0\0\19\0\0\0L\0\2\0\1À\0" },
     config = { "\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21custom/telescope\frequire\0" },
     loaded = false,
     needs_bufread = true,
+    only_cond = true,
     path = "/Users/evolify/.local/share/nvim/site/pack/packer/opt/telescope.nvim"
   },
   ["todo-comments.nvim"] = {
@@ -417,10 +419,38 @@ _G.packer_plugins = {
 }
 
 time([[Defining packer_plugins]], false)
+-- Config for: zen-mode.nvim
+time([[Config for zen-mode.nvim]], true)
+try_loadstring("\27LJ\2\n*\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\15custom/zen\frequire\0", "config", "zen-mode.nvim")
+time([[Config for zen-mode.nvim]], false)
+-- Config for: diffview.nvim
+time([[Config for diffview.nvim]], true)
+try_loadstring("\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20custom/diffview\frequire\0", "config", "diffview.nvim")
+time([[Config for diffview.nvim]], false)
+-- Config for: orgmode.nvim
+time([[Config for orgmode.nvim]], true)
+try_loadstring("\27LJ\2\n.\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\19custom/orgmode\frequire\0", "config", "orgmode.nvim")
+time([[Config for orgmode.nvim]], false)
+-- Config for: marks.nvim
+time([[Config for marks.nvim]], true)
+try_loadstring("\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17custom/marks\frequire\0", "config", "marks.nvim")
+time([[Config for marks.nvim]], false)
+-- Config for: feline.nvim
+time([[Config for feline.nvim]], true)
+try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18custom/feline\frequire\0", "config", "feline.nvim")
+time([[Config for feline.nvim]], false)
+-- Config for: neoscroll.nvim
+time([[Config for neoscroll.nvim]], true)
+try_loadstring("\27LJ\2\nK\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\16hide_cursor\1\nsetup\14neoscroll\frequire\0", "config", "neoscroll.nvim")
+time([[Config for neoscroll.nvim]], false)
 -- Config for: focus.nvim
 time([[Config for focus.nvim]], true)
 try_loadstring("\27LJ\2\nb\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\23excluded_filetypes\1\0\0\1\2\0\0\rNvimTree\nsetup\nfocus\frequire\0", "config", "focus.nvim")
 time([[Config for focus.nvim]], false)
+-- Config for: Comment.nvim
+time([[Config for Comment.nvim]], true)
+try_loadstring("\27LJ\2\n,\0\0\1\0\3\0\0046\0\0\0009\0\1\0009\0\2\0L\0\2\0\18commentstring\abo\bvimN\1\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0003\3\3\0=\3\5\2B\0\2\1K\0\1\0\rpre_hook\1\0\0\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
+time([[Config for Comment.nvim]], false)
 -- Config for: nvim-bufferline.lua
 time([[Config for nvim-bufferline.lua]], true)
 try_loadstring("\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22custom/bufferline\frequire\0", "config", "nvim-bufferline.lua")
@@ -445,10 +475,6 @@ time([[Config for symbols-outline.nvim]], false)
 time([[Config for gitsigns.nvim]], true)
 try_loadstring("\27LJ\2\n*\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\15custom/git\frequire\0", "config", "gitsigns.nvim")
 time([[Config for gitsigns.nvim]], false)
--- Config for: Comment.nvim
-time([[Config for Comment.nvim]], true)
-try_loadstring("\27LJ\2\n,\0\0\1\0\3\0\0046\0\0\0009\0\1\0009\0\2\0L\0\2\0\18commentstring\abo\bvimN\1\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0003\3\3\0=\3\5\2B\0\2\1K\0\1\0\rpre_hook\1\0\0\0\nsetup\fComment\frequire\0", "config", "Comment.nvim")
-time([[Config for Comment.nvim]], false)
 -- Config for: nvim-dap
 time([[Config for nvim-dap]], true)
 try_loadstring("\27LJ\2\n*\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\15custom/dap\frequire\0", "config", "nvim-dap")
@@ -457,6 +483,10 @@ time([[Config for nvim-dap]], false)
 time([[Config for indent-blankline.nvim]], true)
 try_loadstring("\27LJ\2\n’\1\0\0\4\0\6\0\t6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\4\0005\3\3\0=\3\5\2B\0\2\1K\0\1\0\21filetype_exclude\1\0\2\25show_current_context\2\19use_treesitter\2\1\2\0\0\14dashboard\nsetup\21indent_blankline\frequire\0", "config", "indent-blankline.nvim")
 time([[Config for indent-blankline.nvim]], false)
+-- Config for: winshift.nvim
+time([[Config for winshift.nvim]], true)
+try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "winshift.nvim")
+time([[Config for winshift.nvim]], false)
 -- Config for: which-key.nvim
 time([[Config for which-key.nvim]], true)
 try_loadstring("\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20custom/whichkey\frequire\0", "config", "which-key.nvim")
@@ -465,22 +495,6 @@ time([[Config for which-key.nvim]], false)
 time([[Config for nvim-autopairs]], true)
 try_loadstring("\27LJ\2\n<\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\19nvim-autopairs\frequire\0", "config", "nvim-autopairs")
 time([[Config for nvim-autopairs]], false)
--- Config for: winshift.nvim
-time([[Config for winshift.nvim]], true)
-try_loadstring("\27LJ\2\n\v\0\0\1\0\0\0\1K\0\1\0\0", "config", "winshift.nvim")
-time([[Config for winshift.nvim]], false)
--- Config for: todo-comments.nvim
-time([[Config for todo-comments.nvim]], true)
-try_loadstring("\27LJ\2\n4\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\25custom/todo-comments\frequire\0", "config", "todo-comments.nvim")
-time([[Config for todo-comments.nvim]], false)
--- Config for: zen-mode.nvim
-time([[Config for zen-mode.nvim]], true)
-try_loadstring("\27LJ\2\n*\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\15custom/zen\frequire\0", "config", "zen-mode.nvim")
-time([[Config for zen-mode.nvim]], false)
--- Config for: diffview.nvim
-time([[Config for diffview.nvim]], true)
-try_loadstring("\27LJ\2\n/\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\20custom/diffview\frequire\0", "config", "diffview.nvim")
-time([[Config for diffview.nvim]], false)
 -- Config for: nvim-colorizer.lua
 time([[Config for nvim-colorizer.lua]], true)
 try_loadstring("\27LJ\2\n7\0\0\3\0\3\0\0066\0\0\0'\2\1\0B\0\2\0029\0\2\0B\0\1\1K\0\1\0\nsetup\14colorizer\frequire\0", "config", "nvim-colorizer.lua")
@@ -489,42 +503,18 @@ time([[Config for nvim-colorizer.lua]], false)
 time([[Config for nvim-lspconfig]], true)
 try_loadstring("\27LJ\2\n*\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\15custom/lsp\frequire\0", "config", "nvim-lspconfig")
 time([[Config for nvim-lspconfig]], false)
--- Config for: orgmode.nvim
-time([[Config for orgmode.nvim]], true)
-try_loadstring("\27LJ\2\n.\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\19custom/orgmode\frequire\0", "config", "orgmode.nvim")
-time([[Config for orgmode.nvim]], false)
--- Config for: marks.nvim
-time([[Config for marks.nvim]], true)
-try_loadstring("\27LJ\2\n,\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\17custom/marks\frequire\0", "config", "marks.nvim")
-time([[Config for marks.nvim]], false)
--- Config for: feline.nvim
-time([[Config for feline.nvim]], true)
-try_loadstring("\27LJ\2\n-\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\18custom/feline\frequire\0", "config", "feline.nvim")
-time([[Config for feline.nvim]], false)
 -- Config for: nvim-toggleterm.lua
 time([[Config for nvim-toggleterm.lua]], true)
 try_loadstring("\27LJ\2\n1\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\22custom/toggleterm\frequire\0", "config", "nvim-toggleterm.lua")
 time([[Config for nvim-toggleterm.lua]], false)
--- Config for: neoscroll.nvim
-time([[Config for neoscroll.nvim]], true)
-try_loadstring("\27LJ\2\nK\0\0\3\0\4\0\a6\0\0\0'\2\1\0B\0\2\0029\0\2\0005\2\3\0B\0\2\1K\0\1\0\1\0\1\16hide_cursor\1\nsetup\14neoscroll\frequire\0", "config", "neoscroll.nvim")
-time([[Config for neoscroll.nvim]], false)
+-- Config for: todo-comments.nvim
+time([[Config for todo-comments.nvim]], true)
+try_loadstring("\27LJ\2\n4\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\25custom/todo-comments\frequire\0", "config", "todo-comments.nvim")
+time([[Config for todo-comments.nvim]], false)
 -- Conditional loads
-time("Condition for { 'telescope.nvim' }", true)
-if
-try_loadstring("\27LJ\2\n\21\0\0\1\1\0\0\3-\0\0\0\19\0\0\0L\0\2\0\1À\0", "condition", '{ "telescope.nvim" }')
-then
-time("Condition for { 'telescope.nvim' }", false)
-time([[packadd for telescope.nvim]], true)
-		require("packer.load")({"telescope.nvim"}, {}, _G.packer_plugins)
-	time([[packadd for telescope.nvim]], false)
-	-- Config for: telescope.nvim
-	time([[Config for telescope.nvim]], true)
-	try_loadstring("\27LJ\2\n0\0\0\3\0\2\0\0046\0\0\0'\2\1\0B\0\2\1K\0\1\0\21custom/telescope\frequire\0", "config", "telescope.nvim")
-	time([[Config for telescope.nvim]], false)
-else
-time("Condition for { 'telescope.nvim' }", false)
-end
+time([[Conditional loading of telescope.nvim]], true)
+  require("packer.load")({"telescope.nvim"}, {}, _G.packer_plugins)
+time([[Conditional loading of telescope.nvim]], false)
 if should_profile then save_profiles() end
 
 end)

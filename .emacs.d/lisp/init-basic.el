@@ -20,7 +20,7 @@
 (tool-bar-mode -1)
 (toggle-scroll-bar -1)
 
-(setq org-directory "~/org/")
+(setq org-directory "~/Documents/org/")
 
 ; set blur background
 ; (set-face-background 'default "mac:windowBackgroundColor")

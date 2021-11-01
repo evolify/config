@@ -1,7 +1,7 @@
 (use-package lsp-mode
   :init (setq lsp-keymap-prefix "C-c l"
               lsp-headerline-breadcrumb-enable nil)
-  :hook (prog-mode . lsp)
+  :hook (web-mode . lsp)
   :commands (
     lsp
     lsp-deferred

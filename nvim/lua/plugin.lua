@@ -84,9 +84,9 @@ require("packer").startup(
       end
     }
     use "prettier/vim-prettier"
-    use "/usr/local/opt/fzf"
-    use "junegunn/fzf.vim"
-    use "pbogut/fzf-mru.vim"
+    -- use "/usr/local/opt/fzf"
+    -- use "junegunn/fzf.vim"
+    -- use "pbogut/fzf-mru.vim"
     use "nvim-lua/plenary.nvim"
 
     -- git

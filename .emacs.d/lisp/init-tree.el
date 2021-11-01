@@ -62,6 +62,7 @@
     (treemacs-follow-mode 1)
     (treemacs-filewatch-mode t)
     (treemacs-fringe-indicator-mode 'always)
+    (treemacs-load-theme "doom-colors")
 
     (pcase (cons (not (null (executable-find "git")))
                  (not (null treemacs-python-executable)))
